@@ -6,7 +6,8 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    movies: []
+    movies: [],
+    us_box: []
   },
   actions: {
     FETCH_MOVIES ({commit, dispatch, state}) {
@@ -14,11 +15,20 @@ export default new Vuex.Store({
         let movies = res.data.subjects
         commit('SET_MOVIES', movies)
       })
+    },
+    FETCH_US ({commit, dispatch, state}) {
+      return axios.get('/api/movie/us_box').then(res => {
+        let us_box = res.data.subjects
+        commit('SET_US', us_box)
+      })
     }
   },
   mutations: {
     SET_MOVIES (state, movies) {
       state.movies = movies
+    },
+    SET_US (state, us_box) {
+      state.us_box = us_box
     }
   }
 })
