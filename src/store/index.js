@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
+import Raven from 'raven-js' 
 
 Vue.use(Vuex)
 
@@ -14,6 +15,8 @@ export default new Vuex.Store({
       return axios.get('/api/movie/top250').then(res => {
         let movies = res.data.subjects
         commit('SET_MOVIES', movies)
+      }).catch(err => {
+        Raven.captureException(err)
       })
     },
     FETCH_US ({commit, dispatch, state}) {
