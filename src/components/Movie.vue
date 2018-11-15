@@ -1,11 +1,11 @@
 <template>
   <div id="movie">
     <h4>豆瓣Top250</h4>
-    <ol>
-      <li v-for="movie in movies" :key="movie.id">
-        {{movie.title}}
+    <ul>
+      <li v-for="(movie, index) in movies" :key="movie.id">
+        {{ index + 1 }}.{{ movie.title }}
       </li>
-    </ol>
+    </ul>
   </div>
 </template>
 
